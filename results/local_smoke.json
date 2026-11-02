@@ -1,0 +1,10 @@
+{
+  "url": "http://127.0.0.1:8000",
+  "duration": 3,
+  "rate": 10,
+  "pattern": "constant",
+  "mix": "mixed",
+  "seed": 42,
+  "max_pending": 200,
+  "offered": 30
+}

@@ -1,0 +1,17 @@
+{
+  "before": {
+    "app3": 30,
+    "app2": 20,
+    "app1": 10
+  },
+  "forced": {
+    "app1": 58,
+    "app3": 1,
+    "app2": 1
+  },
+  "after_controller_restart": {
+    "app2": 21,
+    "app3": 29,
+    "app1": 10
+  }
+}

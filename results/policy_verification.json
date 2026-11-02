@@ -1,0 +1,194 @@
+[
+  {
+    "policy": "round_robin",
+    "counts": {
+      "app1": 20,
+      "app2": 20,
+      "app3": 20
+    },
+    "controller": {
+      "policy": "round_robin",
+      "weights": {
+        "app1": 100,
+        "app2": 100,
+        "app3": 100
+      },
+      "mode": "native_haproxy",
+      "prediction_enabled": false,
+      "forecast_method": "ewma",
+      "cycle_seconds": 8.10400001682865e-06
+    },
+    "proxy": {
+      "servers": {
+        "app1": {
+          "weight": 100,
+          "status": "UP"
+        },
+        "app2": {
+          "weight": 100,
+          "status": "UP"
+        },
+        "app3": {
+          "weight": 100,
+          "status": "UP"
+        }
+      },
+      "algorithm": "roundrobin"
+    }
+  },
+  {
+    "policy": "static_weighted",
+    "counts": {
+      "app3": 30,
+      "app2": 20,
+      "app1": 10
+    },
+    "controller": {
+      "policy": "static_weighted",
+      "weights": {
+        "app1": 50,
+        "app2": 100,
+        "app3": 150
+      },
+      "mode": "native_haproxy",
+      "prediction_enabled": false,
+      "forecast_method": "ewma",
+      "cycle_seconds": 5.073000011179829e-06
+    },
+    "proxy": {
+      "servers": {
+        "app1": {
+          "weight": 50,
+          "status": "UP"
+        },
+        "app2": {
+          "weight": 100,
+          "status": "UP"
+        },
+        "app3": {
+          "weight": 150,
+          "status": "UP"
+        }
+      },
+      "algorithm": "roundrobin"
+    }
+  },
+  {
+    "policy": "least_connections",
+    "counts": {
+      "app1": 20,
+      "app2": 20,
+      "app3": 20
+    },
+    "controller": {
+      "policy": "least_connections",
+      "weights": {
+        "app1": 50,
+        "app2": 100,
+        "app3": 150
+      },
+      "mode": "native_haproxy",
+      "prediction_enabled": false,
+      "forecast_method": "ewma",
+      "cycle_seconds": 3.848999995170743e-06
+    },
+    "proxy": {
+      "servers": {
+        "app1": {
+          "weight": 50,
+          "status": "UP"
+        },
+        "app2": {
+          "weight": 100,
+          "status": "UP"
+        },
+        "app3": {
+          "weight": 150,
+          "status": "UP"
+        }
+      },
+      "algorithm": "leastconn"
+    }
+  },
+  {
+    "policy": "reactive",
+    "counts": {
+      "app3": 30,
+      "app2": 20,
+      "app1": 10
+    },
+    "controller": {
+      "policy": "reactive",
+      "weights": {
+        "app1": 43,
+        "app2": 85,
+        "app3": 128
+      },
+      "mode": "reactive",
+      "prediction_enabled": false,
+      "forecast_method": "ewma",
+      "forecast_rps": null,
+      "cycle_seconds": 0.011664671000062299
+    },
+    "proxy": {
+      "servers": {
+        "app1": {
+          "weight": 43,
+          "status": "UP"
+        },
+        "app2": {
+          "weight": 85,
+          "status": "UP"
+        },
+        "app3": {
+          "weight": 128,
+          "status": "UP"
+        }
+      },
+      "algorithm": "roundrobin"
+    }
+  },
+  {
+    "policy": "predictive",
+    "counts": {
+      "app3": 30,
+      "app1": 10,
+      "app2": 20
+    },
+    "controller": {
+      "policy": "predictive",
+      "weights": {
+        "app1": 43,
+        "app2": 86,
+        "app3": 127
+      },
+      "mode": "reactive",
+      "prediction_enabled": false,
+      "forecast_method": "ewma",
+      "forecast_rps": 12.14666820379588,
+      "cycle_seconds": 0.013880262999919069,
+      "forecast_validation": {
+        "mae": 7.096959921295886,
+        "rmse": 7.9633654936895795,
+        "samples": 9
+      }
+    },
+    "proxy": {
+      "servers": {
+        "app1": {
+          "weight": 43,
+          "status": "UP"
+        },
+        "app2": {
+          "weight": 86,
+          "status": "UP"
+        },
+        "app3": {
+          "weight": 127,
+          "status": "UP"
+        }
+      },
+      "algorithm": "roundrobin"
+    }
+  }
+]

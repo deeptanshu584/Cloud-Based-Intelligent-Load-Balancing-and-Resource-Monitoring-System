@@ -1,0 +1,10 @@
+{
+  "url": "http://localhost:8080",
+  "duration": 20,
+  "rate": 12,
+  "pattern": "constant",
+  "mix": "mixed",
+  "seed": 42,
+  "max_pending": 200,
+  "offered": 221
+}

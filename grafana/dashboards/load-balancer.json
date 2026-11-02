@@ -1,0 +1,13 @@
+{
+  "uid":"cloud-load-balancer","title":"Cloud Load Balancer","schemaVersion":39,"version":1,
+  "time":{"from":"now-15m","to":"now"},"refresh":"5s","panels":[
+    {"id":1,"type":"timeseries","title":"Request rate by replica (req/s)","gridPos":{"h":8,"w":12,"x":0,"y":0},"targets":[{"expr":"sum by(replica)(rate(app_requests_total[1m]))","legendFormat":"{{replica}}"}]},
+    {"id":2,"type":"timeseries","title":"Success and failure rate (req/s)","gridPos":{"h":8,"w":12,"x":12,"y":0},"targets":[{"expr":"sum by(status)(rate(app_requests_total[1m]))","legendFormat":"HTTP {{status}}"}]},
+    {"id":3,"type":"timeseries","title":"p95 backend latency (seconds)","gridPos":{"h":8,"w":12,"x":0,"y":8},"targets":[{"expr":"histogram_quantile(0.95, sum by(le,replica)(rate(app_request_duration_seconds_bucket[1m])))","legendFormat":"{{replica}}"}]},
+    {"id":4,"type":"timeseries","title":"Backend scrape health","gridPos":{"h":8,"w":12,"x":12,"y":8},"targets":[{"expr":"up{job=\"backends\"}","legendFormat":"{{instance}}"}]},
+    {"id":5,"type":"timeseries","title":"CPU utilization / configured allocation","gridPos":{"h":8,"w":12,"x":0,"y":16},"targets":[{"expr":"rate(process_cpu_seconds_total{instance=\"app1:8000\"}[1m]) / 0.5","legendFormat":"app1"},{"expr":"rate(process_cpu_seconds_total{instance=\"app2:8000\"}[1m])","legendFormat":"app2"},{"expr":"rate(process_cpu_seconds_total{instance=\"app3:8000\"}[1m]) / 1.5","legendFormat":"app3"}]},
+    {"id":6,"type":"timeseries","title":"Process resident memory (bytes)","gridPos":{"h":8,"w":12,"x":12,"y":16},"targets":[{"expr":"process_resident_memory_bytes{job=\"backends\"}","legendFormat":"{{instance}}"}]},
+    {"id":7,"type":"timeseries","title":"In-flight requests","gridPos":{"h":8,"w":12,"x":0,"y":24},"targets":[{"expr":"app_inflight_requests","legendFormat":"{{replica}}"}]},
+    {"id":8,"type":"timeseries","title":"HAProxy backend status","gridPos":{"h":8,"w":12,"x":12,"y":24},"targets":[{"expr":"haproxy_server_status","legendFormat":"{{server}}"}]}
+  ]
+}

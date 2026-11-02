@@ -1,0 +1,26 @@
+global
+    log stdout format raw local0
+    stats socket /run/haproxy/admin.sock mode 666 level admin
+    maxconn 2000
+defaults
+    mode http
+    log global
+    option httplog
+    option redispatch
+    timeout connect 2s
+    timeout client 10s
+    timeout server 10s
+    retries 1
+frontend public
+    bind *:8080
+    default_backend servers
+frontend monitoring
+    bind *:8404
+    http-request use-service prometheus-exporter if { path /metrics }
+backend servers
+    balance __BALANCE__
+    option httpchk GET /health
+    http-check expect status 200
+    server app1 app1:8000 check inter 2s fall 2 rise 2 weight 50
+    server app2 app2:8000 check inter 2s fall 2 rise 2 weight 100
+    server app3 app3:8000 check inter 2s fall 2 rise 2 weight 150
